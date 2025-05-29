@@ -5,7 +5,7 @@ namespace SpriteKind {
 }
 function createGame () {
     // #1, #2, #3, #4, #10, and #13
-    tiles.setCurrentTilemap(tilemap`level1`)
+    tiles.setCurrentTilemap(tilemap`level0`)
     initializeVaribles()
     createCOINS()
     createMARIO()
@@ -41,7 +41,7 @@ function createMARIO () {
         `, SpriteKind.marioKind)
     controller.moveSprite(marioSprite, playerSpeed, 0)
     scene.cameraFollowSprite(marioSprite)
-    for (let value of tiles.getTilesByType(assets.tile`myTile`)) {
+    for (let value of tiles.getTilesByType(assets.tile`myTile1`)) {
         // #5
         tiles.placeOnTile(marioSprite, value)
         tiles.setTileAt(value, assets.tile`transparency16`)
@@ -65,7 +65,7 @@ sprites.onOverlap(SpriteKind.marioKind, SpriteKind.enemyKind, function (sprite, 
 })
 function createCOINS () {
     // #11
-    for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
+    for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
         coinSprite = sprites.create(img`
             . . b b b b . . 
             . b 5 5 5 5 b . 
@@ -142,7 +142,7 @@ function createCOINS () {
 }
 function createEnemy () {
     // #14, and #15
-    for (let value of tiles.getTilesByType(assets.tile`myTile3`)) {
+    for (let value of tiles.getTilesByType(assets.tile`myTile2`)) {
         enemySprte = sprites.create(img`
             . f f f . . . . . . . . f f f . 
             f f c . . . . . . . f c b b c . 
@@ -249,7 +249,7 @@ sprites.onOverlap(SpriteKind.marioKind, SpriteKind.coinKind, function (sprite, o
     sprites.destroy(otherSprite, effects.fire, 0.1)
     info.changeScoreBy(_value)
 })
-scene.onOverlapTile(SpriteKind.marioKind, assets.tile`myTile1`, function (sprite, location) {
+scene.onOverlapTile(SpriteKind.marioKind, assets.tile`myTile0`, function (sprite, location) {
     game.gameOver(true)
 })
 let enemySprte: Sprite = null
